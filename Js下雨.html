@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雨</title>
+    <style>
+        body {
+            background-color: blanchedalmond;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+
+        setInterval(() => {
+            let rain = document.createElement('div')
+            rain.style.height = '100px'
+            rain.style.width = '2px'
+            rain.style.backgroundColor = 'skyblue'
+            rain.style.filter = 'blur(1px)'
+            rain.style.position = 'fixed'
+            // 随机初始化位置
+            rain.style.top = '0px'
+            rain.style.left = Math.random() * 1920 + 'px'
+            // 随机透明度
+            rain.style.opacity = parseInt(Math.random() * 10) / 10 + 'px'
+            // 添加雨滴到页面中
+            let body = document.querySelector('body')
+            body.appendChild(rain)
+
+            // 模拟雨滴下落
+            let time = setInterval(() => {
+                let height = parseInt(rain.style.top)
+                let n = 1
+                rain.style.top = height + 5 * Math.pow(++n, 2) + 'px'    //模拟重力加速度,完成雨滴下落的移动和加速效果
+
+                // 雨滴落地消逝
+                if (height >= 600) {
+                    clearInterval(time)
+                    body.removeChild(rain)
+                }
+            }, 30);
+        }, 50);
+
+
+
+    </script>
+</body>
+
+</html>
